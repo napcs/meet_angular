@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Flickr Search</title>
+  </head>
+
+  <body ng-app>
+    <div class="wrapper">
+      <label for="search">Search Flickr</label>
+      <input id="search" name="search" placeholder="Enter Keyword" autofocus ng-model="keyword">
+      
+      <p ng-bind="keyword"></p>
+      
+    </div>
+
+    <script src="lib/angular.min.js"></script>
+    <script src="javascripts/app.js"></script>
+
+    
+  </body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Flickr Search</title>
+  </head>
+
+  <body ng-app="FlickrSearch">
+    <div class="wrapper" ng-controller="MainCtrl">
+      <p ng-bind="message"></p>
+      <label for="search">Search Flickr</label>
+      <input id="search" name="search" placeholder="Enter Keyword" autofocus ng-model="keyword">
+      <input type="submit" value="Search" ng-click="search()">
+      
+      <p ng-bind="keyword"></p>
+      
+      <section ng-repeat="result in results">
+        <photo result="{{result}}"></photo>
+      </section>
+
+    </div>
+
+    <script src="lib/angular.min.js"></script>
+    <script src="javascripts/app.js"></script>
+
+    
+  </body>
+
+</html>

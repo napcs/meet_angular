@@ -1,0 +1,11 @@
+{
+  "name": "FlickrSearch",
+  "description": "A simple Angular app to search FLickr",
+  "devDependencies": {
+    "phantomjs" : "*",
+    "karma" : "*",
+    "karma-junit-reporter" : "*",
+    "karma-jasmine" : "*",
+    "karma-ng-scenario" : "*"
+  }
+}
