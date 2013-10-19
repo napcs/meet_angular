@@ -7,12 +7,12 @@
 
   <body ng-app="FlickrSearch">
     <div class="wrapper" ng-controller="MainCtrl">
-      <p ng-bind="message"></p>
+      <p ng-bind="message"></p
       <label for="search">Search Flickr</label>
       <input id="search" name="search" placeholder="Enter Keyword" autofocus ng-model="keyword">
       <input type="submit" value="Search" ng-click="search()">
       
-      <p>You searched for <span>ng-bind="keyword"></span></p>
+      <p>You searched for <span ng-bind="keyword"></span></p>
       
       <section>
         <p ng-repeat="result in results" ng-bind="result"></p>
