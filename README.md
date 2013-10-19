@@ -19,7 +19,7 @@ flickrsearch/
   index.html
 ~~~
 
-If you're on the Terminal, you can create these folders and files quickly:
+If you're comfortable using  the Terminal, you can create these folders and files quickly:
 
 ~~~bash
 $ mkdir -p flickrsearch/javascripts
@@ -81,11 +81,22 @@ Angular's built-in data binding is incredibly easy to set up. To illustrate what
        placeholder="Enter Keyword" 
        autofocus 
        ng-model="keyword">
-  
-<p ng-bind="keyword"></p>
+<p>You searched for {{keyword}}</p>  
 ~~~
 
-Here we have a label and an input field, followed by a paragraph tag. The input field uses the `ng-model` directive which turns this field into a data model that can be bound to other elements.  We bind it to the paragraph element with the `ng-bind` directive. Now, when we load the page in the web browser and type a keyword into the text box, the keyword displays in the paragraph. Data binding in Angular is as simple as this - by changing the model (the "keyword" text field) we can change the bound element.
+Here we have a label and an input field, followed by a paragraph tag. The input field uses the `ng-model` directive which turns this field into a data model that can be bound to other elements.  
+
+Now, when we load the page in the web browser and type a keyword into the text box, the keyword displays in the paragraph. 
+
+Let's change the `{{keyword}}` part though. There's a much cleaner approach. We'll replace the `{{keyword}}` part
+with a `<span>` and use Angular's `ng-bind` attribute.
+
+~~~
+<p>You searched for <span ng-bind="keyword"></span>.</p>
+~~~
+
+
+Data binding in Angular is as simple as this - by changing the model (the "keyword" text field) we can change the bound element.
 
 Of course, this is hardly useful as it stands now, so let's do someting more useful with Angular's data binding, by adding a Controller into the mix.
 
@@ -260,7 +271,7 @@ a static array of results to one that fetches results from Flickr.
 
 ~~~javascript
 $scope.search = function(){
-  var query = $encodeURIComponent(scope.keyword);
+  var query = encodeURIComponent($scope.keyword);
   var flickrURL = 'http://api.flickr.com/services/feeds/photos_public.gne?format=json&tags='                  + query + '&jsoncallback=JSON_CALLBACK'; 
 
   $http.jsonp(flickrURL).then(function(data){
@@ -424,7 +435,7 @@ assume that we're not passing in the whole request, just the
 data on the request. So the parsing service ends up looking like this:
 
 ~~~
-FlickrSearch.service("FeedParser", function($http){
+FlickrSearch.service("FeedParser", function(){
   this.parse = (function(data){
     var results = []; 
     for(var i = 0; i < data.items.length; i++){
@@ -497,16 +508,20 @@ To define a directive, we decide if we want the directive to be an attribute
 on an existing tag, a completely new tag, or even an HTML comment.  Each
 of these have advantages and disadvantages that you'll need to explore, but
 in this project we're going to create a directive that defines a new element 
-called `<photo>`. Let's define the new markup *first* this time. By using the
+called `<photo>`. Let's define the new markup *first* this time. Doing the markup of a directive first can help us decide if we like how the interface works. Then we just have
+to write the code to make it work that way.
 
 ~~~
-<section ng-repeat="result in results">
-  <photo result="{{result}}"></photo>
+<section>
+  <photo ng-repeat="result in results"
+         result="{{result}}"></photo>
 </section>
 ~~~
 
 We're defining this element so it has an attribute called `result` that 
 takes in the result that we get from the iterator above.
+
+It can still support the `ng-repeat` directive too, and we don't have to write any special code to make that work!
 
 
 To define this directive, we add this code:

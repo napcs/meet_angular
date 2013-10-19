@@ -12,13 +12,13 @@
       <input id="search" name="search" placeholder="Enter Keyword" autofocus ng-model="keyword">
       <input type="submit" value="Search" ng-click="search()">
       
-      <p ng-bind="keyword"></p>
+      <p>You searched for <span>ng-bind="keyword"></span></p>
       
-      <section ng-repeat="result in results">
-        <div>
-          <p ng-bind="result.title"></p>
+      <section>
+        <figure ng-repeat="result in results">
+          <figcaption ng-bind="result.title"></figcaption>
           <img ng-src="{{result.image}}">
-        </div>
+        </figure>
       </section>
 
     </div>
