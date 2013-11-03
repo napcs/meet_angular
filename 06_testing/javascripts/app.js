@@ -14,7 +14,7 @@ FlickrSearch.service("PhotoSearch", ["$http", "FeedParser",  function($http, Fee
 }]);
 
 // Parses the feed results into a more managable object.
-FlickrSearch.service("FeedParser", function($http){
+FlickrSearch.service("FeedParser", function(){
   this.parse = (function(data){
     var results = []; 
     for(var i = 0; i < data.items.length; i++){

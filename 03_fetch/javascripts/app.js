@@ -12,7 +12,6 @@ FlickrSearch.controller(
 
       $http.jsonp(flickrURL).then(function(response){
         var data = response.data;
-        console.log(response);
         var results = []; 
         for(var i = 0; i < data.items.length; i++){
           var result = {};
